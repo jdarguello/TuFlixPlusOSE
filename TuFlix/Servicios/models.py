@@ -3,7 +3,7 @@ from django.db import models
 # => CRUD -> conexión con base de datos. Manipular bases de datos mediante clases Python
 
 """
-    BEAT-E -> proyecto musical.
+    proyecto musical.
 
     Musico - albumes - canciones
 
@@ -65,5 +65,18 @@ CREATE TABLE Servicios_Musico(
                 Podemos hacer lo siguiente:     SISTEMA DE DEPURACIÓN DE CÓDIGO
                     1. Probar código CRUD
                     2. Verificar la lógica de un algoritmo
+
+from Servicos.models import *
+
+#OBTENER INFORMACIÓN
+musicos = Musico.objects.all()  -> obtener TODOS los registros de la tabla 'Musico' en base de datos
+Juanes = Musico.objects.get(nombreArtistico="Juanes")   #get => esperamos como respuesta UN sólo objeto
+
+albumesJuanes = Album.objects.filter(musico=Juanes)     #filter => esperamos posiblemente múltiples objetos
+
+
+#CREAR UN NUEVO MÚSICO
+Shakira = Musico.objects.create(nombreArtistico="Shakira", nombre="Shakira")
+nuevoAlbum = Album.objects.create(musico=Juanes, nombre="Ordinario")
 
 """
