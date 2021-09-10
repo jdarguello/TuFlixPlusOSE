@@ -30,6 +30,12 @@ Esta aplicación web cumplirá diferentes requerimientos _funcionales_ y _no fun
 	* Administrador: puede manipular el contenido multimedia (agregar o remover películas o vídeos), agregar usuarios de cualquier tipo y hacer seguimiento de pagos a la plataforma.
 	* Cliente: puede acceder y disfrutar del contenido multimedia.
 
+* Exista contenido "gratuito" con publicidad.
+
+* Compar una serie, o película, de forma individual.
+
+* Acceso a todo el contenido mediante suscripción.
+
 * Recibir pagos mediante pasarelas como ePayco, Nequi y PayPal.
 
 ### 1.2. Requerimientos no funcionales
