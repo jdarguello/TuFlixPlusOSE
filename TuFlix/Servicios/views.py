@@ -3,6 +3,8 @@ from django.shortcuts import render
 #Para imprimir mensajes sencillos de respuesta:
 from django.http import HttpResponse   
 
+from Servicios.models import *
+
 # Create your views here.
 
 def vistaEjemplo(request):
@@ -18,4 +20,6 @@ def vistaEjemplo(request):
     POST    -> método con el cual el usuario 
                envía información a una URL.
     """
-    return HttpResponse("Hola, estás en la aplicación 'Servicios'")
+    Juanes = Musico.objects.get(nombre="Juan Esteban")
+
+    return HttpResponse("Hola, estás en la aplicación 'Servicios', con el músico: " + Juanes.apellido)
