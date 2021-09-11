@@ -6,5 +6,5 @@ from Servicios.models import Musico
 # => Lógica del backend
 def vistaEjemplo(request):
     #request -> contiene la información del usuario
-    Juanes = Musico.objects.get(nombreArtistico="Juanes")
-    return HttpResponse("Estas en la aplicación de 'Servicios' " + Juanes.nombreArtistico)
+    Shakira = Musico.objects.get(nombreArtistico="Shakira")
+    return HttpResponse("Estas en la aplicación de 'Servicios' " + Shakira.nombreArtistico)

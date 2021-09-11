@@ -9,3 +9,4 @@ urlpatterns = [
     path("ejemplo", vistaEjemplo)
 ]
 
+#localhost:8000/servicios/ -> ubicación local de 'Servicios'

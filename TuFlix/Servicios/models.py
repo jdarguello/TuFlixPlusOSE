@@ -3,6 +3,10 @@ from django.db import models
 # => CRUD -> conexión con base de datos. Manipular bases de datos mediante clases Python
 
 """
+    usuario: juand
+    contraseña: 123
+
+
     proyecto musical.
 
     Musico - albumes - canciones
@@ -31,7 +35,7 @@ class Musico(models.Model):
         return self.nombreArtistico
 
 class Album(models.Model):
-    musico = models.ForeignKey(Musico, on_delete=models.CASCADE)
+    musico = models.ForeignKey(Musico, on_delete=models.CASCADE)    #Establece conexión entre la tabla SQL 'Album' y la tabla 'Musico'
     nombre = models.CharField(max_length=100)
     caratula = models.ImageField(null=True, blank=True)
     fechaCreacion = models.DateField(null=True, blank=True)
@@ -71,6 +75,7 @@ from Servicos.models import *
 #OBTENER INFORMACIÓN
 musicos = Musico.objects.all()  -> obtener TODOS los registros de la tabla 'Musico' en base de datos
 Juanes = Musico.objects.get(nombreArtistico="Juanes")   #get => esperamos como respuesta UN sólo objeto
+Shakira = Musico.objects.get(nombreArtistico="Shakira")
 
 albumesJuanes = Album.objects.filter(musico=Juanes)     #filter => esperamos posiblemente múltiples objetos
 
@@ -78,5 +83,8 @@ albumesJuanes = Album.objects.filter(musico=Juanes)     #filter => esperamos pos
 #CREAR UN NUEVO MÚSICO
 Shakira = Musico.objects.create(nombreArtistico="Shakira", nombre="Shakira")
 nuevoAlbum = Album.objects.create(musico=Juanes, nombre="Ordinario")
+
+#CREAR ALBUM
+
 
 """
