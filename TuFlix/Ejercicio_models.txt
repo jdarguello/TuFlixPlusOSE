@@ -1,0 +1,35 @@
+EJERCICIO:
+
+1. Crear nueva aplicación => 'Productos'
+	python manage.py startapp <nomAplicacion>
+
+2. settings.py (TuFlix/settings.py):
+	INSTALLED_APPS = [
+		...,
+		'Productos'
+	]
+
+3. models.py (Productos/models.py):	=> carpeta 'Productos'
+
+Ejemplo: FamiliaProductos:
+		nombre = Café especial
+		presentacion = "340 g - 1 Kg - 5 Kg"
+		dcto = 8% a partir de la tercera unidad
+
+	Producto:
+		familia = Café especial (objeto tipo 'FamiliaProductos')
+		presentacion = 340 g
+		precio = 8000
+
+	Item:
+		producto = Café especial (objeto tipo 'Producto')
+		cantidad = 5
+
+		def subtotal():
+			return cantidad*precio
+	
+	python manage.py shell	=> depuración de pruebas		python manage.py runserver   => ejecutar servidor local
+	
+	python manage.py makemigrations		python manage.py migrate   => crear tablas SQL
+
+		
