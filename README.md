@@ -30,6 +30,8 @@ Esta aplicación web cumplirá diferentes requerimientos _funcionales_ y _no fun
 	* Administrador: puede manipular el contenido multimedia (agregar o remover películas o vídeos), agregar usuarios de cualquier tipo y hacer seguimiento de pagos a la plataforma.
 	* Cliente: puede acceder y disfrutar del contenido multimedia.
 
+* Usuarios pueden armar sus propias listas de reproducción
+
 * Exista contenido "gratuito" con publicidad.
 
 * Compar una serie, o película, de forma individual.
