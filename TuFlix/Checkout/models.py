@@ -2,11 +2,41 @@ from django.db import models
 
 # Crear los modelos de nuestro Checkout
 
+"""
+usuario: juand
+contraseña: 123
+
+python manage.py createsuperuser
+
+
+CAMBIOS EN MODELS => python manage.py makemigrations
+                     python manage.py migrate
+"""
+
+
+
 class CarritoCompras(models.Model):
+    #ATRIBUTOS => define directamente los argumentos de la tabla SQL
     usuario = models.CharField(max_length=100)      #CharField  -> información de texto
     dcto = models.FloatField(default=0)             #FloatField -> permite almacenar números decimales-
                                                     #default    -> define un valor por defecto (en caso de que no se defina)
-    total = 0
+    fecha = models.DateField(auto_now_add=True, blank=True, null=True)
+
+    #MÉTODOS
+    def __str__(self):
+        #permite especificar la información de los objetos en base de datos
+        return self.usuario + " - " + str(self.fecha)
+    
+    def total(self):
+        #get                            => permite obtener UN objeto que cumpla una condición específica
+        #filter                         => permite obtener TODOS los objetos que cumplan una condición <= MÁS AMPLIO
+        #<nomClase_minuscula>_set.all() => obtiene TODOS los objetos que tengan conexión con el objeto 'CarritoCompras'
+        total = 0
+        #items = self.item_set.all() 
+        items = Item.objects.filter(carrito=self)
+        for item in items:
+            total += item.subtotal()
+        return total
 
 class Producto(models.Model):
     opciones = (
@@ -22,10 +52,17 @@ class Producto(models.Model):
         #Brindar una identificación general en base de datos (sección 'Admin')
         return self.nombre
 
-class Item (models.Model):
+class Item (models.Model):  
+    #<nomClase_minuscula>_set.all()     => ForeignKey
+
+
+    #ForeignKey => establecer una conexión entre el objeto 'Item' y 'CarritoCompras'
     producto = models.ForeignKey(Producto, on_delete=models.CASCADE)        #ES un objeto del tipo producto
     carrito = models.ForeignKey(CarritoCompras, on_delete=models.CASCADE)
     cantidad = models.IntegerField(default=0)
+
+    #models.ForeignKey()    => establece una relación entre tablas SQL.
+    #                       => establece una relación entre objetos Python
 
     def __str__(self):
         return self.producto.nombre
