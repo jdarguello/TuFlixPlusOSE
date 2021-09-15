@@ -1,0 +1,20 @@
+1. Crear aplicación =>  python manage.py startapp <nomApp>
+
+2. Agregar la app a 'settings.py':
+
+    INSTALLED_APPS = [
+        ...,
+        'Productos'
+    ]
+
+3. Productos/models.py => construyen la lógica del CRUD
+
+COMANDOS:
+
+* python manage.py runserver => servidor local
+* python manage.py createsuperuser => usuario admin
+* python manage.py shell
+
+Migraciones:
+* python manage.py makemigrations
+* python manage.py migrate
