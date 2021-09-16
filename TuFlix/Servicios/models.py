@@ -4,7 +4,7 @@ from django.db.models import base
 # => CRUD -> conexión con base de datos. Manipular bases de datos mediante clases Python
 
 class FormatoGeneral(models.Model):
-    nombre = models.CharField(max_length=200)
+    nombre = models.CharField(max_length=200, primary_key=True)
     numLikes = models.IntegerField(default=0)
     numVistas = models.IntegerField(default=0)
 
@@ -51,6 +51,14 @@ class Genero(FormatoGeneral):
 
 class Serie(FormatoGeneral):
     generos = models.ManyToManyField(Genero)  #Especifica múltiples relaciones con objetos de tipo 'Genero'
+
+    @property   #=> convertir el método en atributo
+    def numTemporadas(self):
+        #temporadas = ["Fuego y sangre", "Canción hielo y fuego"]
+        temporadas = self.temporada_set.all()  #Obtiene todas las temporadas => a través de ForeignKey -> conexión de objetos Python
+        temporadas = Temporada.objects.filter(serie=self)   #Obtiene temporadas mediante filtro -> consulta base de datos 
+        return len(temporadas)
+
 
     def like(self):
         super().like()  #Añade un nuevo like a la serie
@@ -148,7 +156,7 @@ class SubtitulosPelicula(models.Model):
         return self.pelicula.nombre + " - " + self.idioma
 
 class Temporada(FormatoGeneral):
-    serie = models.ForeignKey(Serie, on_delete=models.CASCADE)
+    serie = models.ForeignKey(Serie, on_delete=models.CASCADE, blank=True, null=True)
     gratis = models.BooleanField(default=False)
     precio = models.FloatField(default=0)
     fechaLanzamiento = models.DateField()
